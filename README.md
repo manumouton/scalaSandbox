@@ -1,0 +1,1 @@
+Sample repository in order to play with Scala language
