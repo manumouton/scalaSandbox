@@ -14,7 +14,7 @@ object Factorial {
   def factorial(i: Int): Long = {
     @tailrec
     def fact(i: Int, accumulator: Int): Long = {
-      if (i <= 1) accumulator
+      if (i == 0) accumulator
       else fact(i - 1, i * accumulator)
     }
 
