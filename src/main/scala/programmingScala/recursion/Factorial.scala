@@ -3,7 +3,7 @@ package programmingScala.recursion
 import scala.annotation.tailrec
 
 /**
-  * Created by mou on 08/05/2017.
+  * Created by manumouton on 08/05/2017.
   */
 class Factorial {
 
@@ -19,6 +19,10 @@ object Factorial {
     }
 
     fact(i, 1)
+  }
+
+  def factorialBis(n:Int): Int = {
+    if(n == 0) 1 else n * factorialBis(n-1)
   }
 
   def main(args: Array[String]): Unit = {

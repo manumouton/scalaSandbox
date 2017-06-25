@@ -1,7 +1,7 @@
 package programmingScala.principles
 
 /**
-  * Created by mou on 03/05/2017.
+  * Created by manumouton on 03/05/2017.
   */
 class principlesInScala {
 

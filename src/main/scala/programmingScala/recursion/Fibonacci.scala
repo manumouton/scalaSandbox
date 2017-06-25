@@ -3,7 +3,7 @@ package programmingScala.recursion
 import scala.annotation.tailrec
 
 /**
-  * Created by mou on 08/05/2017.
+  * Created by manumouton on 08/05/2017.
   */
 class Fibonacci {
 

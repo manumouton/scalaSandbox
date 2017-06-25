@@ -1,7 +1,7 @@
 package programmingScala.principles
 
 /**
-  * Created by mou on 08/05/2017.
+  * Created by manumouton on 08/05/2017.
   */
 class StringUtils {
 
