@@ -1,0 +1,40 @@
+1. Patient Bob grants Dr. Alice access to his account
+
+Assumption 1: Patient Bob is a user and is logged in the application. Dr Alice is a user and is logged in the application.
+Assumption 2: Since Patient Bob already owns an access to his own account, this means he owns his own copy of the account private key encrypted with his public key.
+Assumption 3: I will assume that accessing to data in the database is done via an ID. Thus, User (patient, clinician, coordinator, carer, ...) and Account are both defined by a dedicated ID.
+Assumption 4: all steps described here below make reference to "the user doing something with encrypted data". Obviously, the reality would be something like a mail notification sent from
+one user to another telling for example "Bob would like to grant you acccess to his account. Click here to proceed." and all subsequent action done in the background.
+
+Step 1: Patient Bob sends to Dr. Alice his public key. (Afterall, this is public)
+Step 2: Dr. Alice stores Bob's public key in her users key store. Dr. Alice acknowledges Bob by sending back her own public key. (Afterall, this is public)
+Step 3: Bob stores Dr. Alice public key in his users key store.
+Step 4: Using public/private key encryption, Bob sends to Dr. Alice the User account ID encrypted with Dr Alice public key. (So that only Alice can decrypt the User account ID with her own private key)
+Step 5: Dr. Alice retrieves her private key in DB, decrypts it with her login/pwd as key and then decrypts the User ID using her private key.
+Step 6: Patient Bob retrieves the account private key in the DB and decrypt it with his private key (retrieved in DB and decrypted with his login/pwd)
+Step 7: Patient Bob shares the account private key with Dr. Alice. Bob encrypts the account private key with Alice's public key and sends it to Dr. Alice.
+Step 8: Alice receives the encrypted account private key, decrypts it with her private key (retrieved in DB and decrypted with his login/pwd) and the save it in the database (next to the account ID) after having encrypted it with her public key.
+
+=> Now, Alice has the account ID and the account private key on her side. She also has access to the account public key in the database. These were prerequisites for exchanging data at Bob's account level.
+
+2. The HL7 interface adds a new radiology image into patient Bob's account.
+
+Assumption 1: authentication is handled separately.
+Assumption 2: HL7 is granted on Bob's account (knowing the account ID, the account private and public keys)
+
+Step 1: HL7 chooses an encryption algorithm and generate a random-key.
+Step 2: HL7 encrypts the radiology image with this algo and this key. => encrypted data
+Step 3: HL7 retrieves in the storage the Account ID public key.
+Step 4: HL7 encrypts the random-generated key with the account's public key => symmetric key
+Step 5: HL7 stores in the database: (AccountID, encryption algorithm, symmetric key, encrypted data)
+
+3. Dr. Alice retrieves an radiology image from patient Bob's account.
+
+Assumption 1: Dr Alice is logged in in the application.
+Assumption 2: Dr. Alice has been granted access to Bob's account.
+
+Step 1: Alice retrieve her private key in DB and decrypt it with her login/pwd key.
+Step 2: Alice retrieve the Account ID and the account's private key in her storage. She decrypts the account's private key with her private key.
+Step 3: Alice fetch the wished radiology image in the database. This is described in the following steps.
+Step 4: For the given radiology row, Alice first decrypt the random-generated encryption key with the account's private key retrieved at step 2.
+Step 5: Alice now decrypts the radiology data by applying the stored algorithm, with the decrypted random-generated encryption key on the encrypted data.
