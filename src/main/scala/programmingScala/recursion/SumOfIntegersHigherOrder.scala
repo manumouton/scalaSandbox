@@ -22,16 +22,28 @@ object SumOfIntegersHigherOrder {
     if(a == 0) 1 else fact(a-1)
   }
 
+  /* Named function version */
   def sumInts(a:Int, b:Int): Int = {
     sum(id, a, b)
   }
 
+  /* Anonymous version */
+  def sumInts(a:Int, b:Int): Int = {
+    sum(x => x, a, b)
+  }
+
+  /* Named function version */
   def sumCubes(a:Int, b:Int): Int = {
     sum(cube, a, b)
   }
 
+  /* Anonymous version */
+  def sumCubes(a: Int, b: Int): Int = {
+    sum(x => x * x * x, a, b)
+  }
+
+  /* Named function version */
   def sumFactorial(a: Int, b: Int): Int = {
     sum(fact, a, b)
   }
-
 }
