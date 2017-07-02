@@ -10,6 +10,15 @@ object SumOfIntegersHigherOrder {
     else f(a) + sum(f, a+1, b)
   }
 
+  def sumTailrec(f: Int => Int, a: Int, b:Int): Int = {
+    def loop(a: Int, acc: Int): Int = {
+      if(a > b) acc
+      else loop(a + 1, f(a) + acc)
+    }
+
+    loop(a, 0)
+  }
+
   def id(a:Int): Int = {
     a
   }
