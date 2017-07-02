@@ -37,7 +37,7 @@ object SumOfIntegersHigherOrder {
   }
 
   /* Anonymous version */
-  def sumInts(a:Int, b:Int): Int = {
+  def sumIntsAnonymous(a:Int, b:Int): Int = {
     sum(x => x, a, b)
   }
 
@@ -47,7 +47,7 @@ object SumOfIntegersHigherOrder {
   }
 
   /* Anonymous version */
-  def sumCubes(a: Int, b: Int): Int = {
+  def sumCubesAnonymous(a: Int, b: Int): Int = {
     sum(x => x * x * x, a, b)
   }
 
