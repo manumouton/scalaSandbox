@@ -19,6 +19,12 @@ object NewtonSquareRoot {
     sqrtIter(1)
   }
 
+  def sqrtFixedPoint(x: Double): Double = FixedPoints.fixedPoints(y => x / y)(1)
+
+  def averageDamp(f: Double => Double)(x: Double) = (x + f(x)) / 2
+
+  def sqrtFixedPointAvgDamp(x: Double) = FixedPoints.fixedPoints(averageDamp(y => x / y))(1)
+
   def main(args: Array[String]): Unit = {
     println(sqrt(2))
 
