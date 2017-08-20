@@ -11,16 +11,11 @@ trait Expr {
 
   def rightOp: Expr
 
-  /*def eval(e: Expr): Int = {
+  def eval(e: Expr): Int = {
     if(e.isNumber) e.numValue
     else if(e.isSum) eval(e.leftOp) + eval(e.rightOp)
     else throw new Error("Unsupported type")
-  }*/
-
-  /*def eval: Int = this match {
-    case Number(n) => n
-    case Sum(e1, e2) => e1.eval + e2.eval
-  }*/
+  }
 }
 
 class Number(n: Int) extends Expr {
