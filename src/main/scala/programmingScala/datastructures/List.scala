@@ -13,6 +13,8 @@ trait List[+T] {
 
   def tail: List[T]
 
+  def preprend[U >: T] (elem: U): List[U] = new Cons(elem, this)
+
 }
 
 class Cons[T](val head:T, val tail:List[T]) extends List[T]{
@@ -35,6 +37,7 @@ object Nil extends List[Nothing]{
 object test {
   val x: List[String] = Nil
 }
+
 
 object List {
   //List(1,2) = List.apply(1,2)
